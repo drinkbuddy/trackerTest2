@@ -35,7 +35,7 @@ jobs:
         pip install platformio
         
     - name: Run PlatformIO build
-      run: pio run --project-dir ./tracker -v
+      run: pio run -e esp32devOTA --project-dir ./tracker -v
       
     - name: create release
       uses: actions/create-release@v1
