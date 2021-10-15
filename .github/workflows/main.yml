@@ -40,6 +40,9 @@ jobs:
     - name: Run PlatformIO build
       run: pio run -e esp32devOTA --project-dir ./tracker -v
       
+    - name: calc firmware hash
+      run: md5sum firmware.bin ./tracker/.pio/build/esp32devOTA > firmware.hash
+      
     - name: create release
       uses: actions/create-release@v1
       id: create_release
@@ -52,7 +55,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
     - name: upload firmware binary
-      id: upload_release_asset
+      id: upload_firmware_release_asset
       uses: actions/upload-release-asset@v1
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -60,4 +63,15 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_path: ./tracker/.pio/build/esp32devOTA/firmware.bin
           asset_name: firmware.bin
+          asset_content_type: application/octet-stream
+
+    - name: upload firmware binary
+      id: upload_firmware_hash_release_asset
+      uses: actions/upload-release-asset@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: .
+          asset_name: firmware.hash
           asset_content_type: application/octet-stream
