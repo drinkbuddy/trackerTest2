@@ -1,0 +1,10 @@
+{
+    "folders": [
+        {
+            "path": "..\\tracker"
+        }
+    ],
+    "settings": {
+        "liveServer.settings.multiRootWorkspaceName": "flascher"
+    }
+}
