@@ -44,7 +44,7 @@ jobs:
         draft: false
         prerelease: false
         generate_release_notes: true
-        tag_name: v1
+        tag_name: ${{ github.ref }}
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
