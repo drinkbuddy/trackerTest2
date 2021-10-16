@@ -41,7 +41,7 @@ jobs:
       run: pio run -e esp32devOTA --project-dir ./tracker
       
     - name: calc firmware hash
-      run: echo "test" > test.txt
+      run: md5sum ./tracker/.pio/build/esp32devOTA/firmware.bin | cat > firmware.hash
       
     - name: create release
       uses: actions/create-release@v1
@@ -60,8 +60,8 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
       with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./test.txt
-          asset_name: test.txt
+          asset_path: ./firmware.hash
+          asset_name: firmware.hash
           asset_content_type: application/octet-stream
           
     - name: upload firmware binary
