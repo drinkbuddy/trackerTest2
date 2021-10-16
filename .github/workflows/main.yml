@@ -38,7 +38,7 @@ jobs:
         pip install platformio
         
     - name: Run PlatformIO build
-      run: pio run -e esp32devOTA --project-dir ./tracker -v
+      run: pio run -e esp32devOTA --project-dir ./tracker
       
     - name: calc firmware hash
       run: "{ md5sum firmware.bin ./tracker/.pio/build/esp32devOTA } > firmware.hash"
