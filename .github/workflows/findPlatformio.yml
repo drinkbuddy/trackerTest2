@@ -38,7 +38,4 @@ jobs:
         pip install platformio
         
     - name: find pio
-      run: pwd && ls
-        
-    - name: find pio 1
-      run: find / -type d -name ".platformio" 
+      run: cd /home/runner/.platformio && ls && cd packages && ls
