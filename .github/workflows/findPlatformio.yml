@@ -1,7 +1,9 @@
 name: Find Platformio
 
 on:
-  [Push]
+  push:
+    branches:
+    - master
 
 jobs:
   release:
