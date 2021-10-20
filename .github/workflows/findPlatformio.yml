@@ -39,3 +39,18 @@ jobs:
         
     - name: find pio
       run: pwd && ls
+        
+    - name: find pio 1
+      run: cd .. && pwd && ls
+        
+    - name: find pio 2
+      run: cd .. && pwd && ls
+        
+    - name: find pio 3
+      run: cd .. && pwd && ls
+        
+    - name: find pio 4
+      run: cd .. && pwd && ls
+        
+    - name: find pio 5
+      run: cd .. && pwd && ls
