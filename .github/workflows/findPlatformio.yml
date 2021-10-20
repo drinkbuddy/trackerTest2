@@ -41,8 +41,4 @@ jobs:
       run: pwd && ls
         
     - name: find pio 1
-      run: cd .. && pwd && ls &&
-        cd .. && pwd && ls &&
-        cd .. && pwd && ls &&
-        cd .. && pwd && ls &&
-        cd .. && pwd && ls
+      run: find / -type d -name ".platformio" 
