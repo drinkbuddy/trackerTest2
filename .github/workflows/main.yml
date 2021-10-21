@@ -41,7 +41,7 @@ jobs:
       run: pio run -e esp32devOTA --project-dir ./tracker
       
     - name: calc firmware hash
-      run: firmwarehash=$(md5sum ./tracker/.pio/build/esp32devOTA/firmware.bin) ; echo " - ${firmwarehash::32}" > firmware.hash
+      run: firmwarehash=$(md5sum ./tracker/.pio/build/esp32devOTA/firmware.bin) ; echo "{\x22firmware\x22: \x22${firmwarehash::32}\x22" > firmware.hash
       
     - name: calc partitions hash
       run: md5sum ./tracker/.pio/build/esp32devOTA/partitions.bin | cat > partitions.hash
