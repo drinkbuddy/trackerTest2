@@ -41,16 +41,16 @@ jobs:
       run: pio run -e esp32devOTA --project-dir ./tracker
       
     - name: calc firmware hash
-      run: firmwarehash=$(md5sum ./tracker/.pio/build/esp32devOTA/firmware.bin) ; echo "{\x22firmware\x22\x3a \x22${firmwarehash::32}\x22," > hashes.json
+      run: firmwarehash=$(md5sum ./tracker/.pio/build/esp32devOTA/firmware.bin) ; echo -e "{\x22firmware\x22\x3a \x22${firmwarehash::32}\x22," > hashes.json
       
     - name: calc partitions hash
-      run: partitionshash=$(md5sum ./tracker/.pio/build/esp32devOTA/partitions.bin) ; echo "\x22partitions\x22\x3a \x22${partitionshash::32}\x22," >> hashes.json
+      run: partitionshash=$(md5sum ./tracker/.pio/build/esp32devOTA/partitions.bin) ; echo -e "\x22partitions\x22\x3a \x22${partitionshash::32}\x22," >> hashes.json
       
     - name: calc bootloader hash
-      run: bootloaderhash=$(md5sum /home/runner/.platformio/packages/framework-arduinoespressif32/tools/sdk/bin/bootloader_dio_40m.bin) ; echo "\x22bootloader\x22\x3a \x22${bootloaderhash::32}\x22," >> hashes.json
+      run: bootloaderhash=$(md5sum /home/runner/.platformio/packages/framework-arduinoespressif32/tools/sdk/bin/bootloader_dio_40m.bin) ; echo -e "\x22bootloader\x22\x3a \x22${bootloaderhash::32}\x22," >> hashes.json
       
     - name: calc boot_app hash
-      run: bootapphash=$(md5sum /home/runner/.platformio/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin) ; echo "\x22bootapp\x22\x3a \x22${bootapphash::32}\x22}" >> hashes.json
+      run: bootapphash=$(md5sum /home/runner/.platformio/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin) ; echo -e "\x22bootapp\x22\x3a \x22${bootapphash::32}\x22}" >> hashes.json
       
     - name: create release
       uses: actions/create-release@v1
